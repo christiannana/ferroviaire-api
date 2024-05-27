@@ -257,14 +257,14 @@ export class TransactionService {
 
   async onFindAllTransactionById(cptFinId) {
     let transactionData = await this.TRANSACTION.find().or([{source_compte_id: cptFinId}, {destination_compte_id: cptFinId} ]).sort({ createdAt: -1 });
-    return {status: true, message: "Les transaction de l'utisateur", data: transactionData };
+    return {status: true, message: "Les transaction de l'utilisateur", data: transactionData };
   }
 
 
 
   async onFindAllPaiementDifererById(service_phone) {
     let transactionData = await this.TRANSACTION.find().where({ status_transaction: "PENDING", service: "PAYMEQUICK", service_phone: service_phone  }).sort({ createdAt: -1 });
-    return {status: true, message: "Les transaction de l'utisateur", data: transactionData };
+    return {status: true, message: "Les transaction de l'utilisateur", data: transactionData };
   }
   
 
