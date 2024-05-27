@@ -1,21 +1,37 @@
 {
-    "framework": null,
-    "outputDirectory": ".",
-    "buildCommand": "npm run build",
-    "functions": {
-      "api/*.js": {
-        "memory": 1024,
-        "maxDuration": 10
-      }
-    },
-    "rewrites": [
+    "version": 2,
+    "builds": [
       {
-        "source": "/api(.*)",
-        "destination": "/api/restful"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/public"
+        "src": "src/main.ts",
+        "use": "@vercel/node"
       }
-    ]
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "src/main.ts",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE",
+          "PATCH",
+          "OPTIONS"
+        ]
+      }
+    ],
+
+    "env": {
+        "PORT":"3000",
+        "MONGODB_URI":"mongodb+srv://benawa_admin:nanamongodb2022@benawadb.qt3it.mongodb.net/FerroviaireDB?retryWrites=true&w=majority",
+        "JWT_SECRET_PAYMEQUICK":"QLWQl8D3KeBjO0YGZE4yR2ajhLBZfQ3hU6xlP",
+        "JWT_SECRET_INFORM":"h67w5ASgXF1e9WXZ8B2D3b5Fi32uEyCAAa6ONCegw",
+        "PUBLIC_MAVIANCE":"EA311324-BDE8-F48E-9168-AAE10C951B41",
+        "SECRET_MAVIANCE":"B2A74CF1-2226-1D06-DAF2-03B87961A22A",
+        "SMS_USER":"info@agis-as.com",
+        "SMS_PASSWORD":"AGIS12345",
+        "SMS_SENDER":"PAYMEQUICK",
+        "PUBLIC_INFORM":"DIxh1Dem8TQx3pKWufz3622gOwsU2i72P1wi5",
+        "SECRET_INFORM":"W0I8KT73OyovFV6EXvP9LFM4K8GUpkBBdwYNU"
+      }
   }
