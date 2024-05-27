@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 
 // import { CreateTrameDto, CreateQuestionnaireDto } from './dto/create-formulaire.dto';
 import { UpdateQuestionnaireDto, UpdateTrameDto } from './dto/update-formulaire.dto';

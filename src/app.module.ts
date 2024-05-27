@@ -12,6 +12,13 @@ import { PersonnelModule } from './application PEC/personnel/personnel.module';
 import { PlanPecModule } from './application PEC/plan-pec/plan-pec.module';
 import { FormulaireModule } from './formulaire/formulaire.module';
 import { FormulaireExploittationModule } from './formulaire_Exploitation/formulaire.module';
+import { UserAccountModule } from './application PayMeQuick/application/users-account/users-account.module';
+import { TransactionModule } from './application PayMeQuick/application/transaction/transaction.module';
+import { CompteFinancierModule } from './application PayMeQuick/application/compte-financier/compte-financier.module';
+import { JwtModule } from '@nestjs/jwt';
+
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
@@ -24,8 +31,19 @@ import { FormulaireExploittationModule } from './formulaire_Exploitation/formula
     ChantiersModule,
     BanqueShemasModule,
 
-    MongooseModule.forRoot('mongodb+srv://benawa_admin:nanamongodb2022@benawadb.qt3it.mongodb.net/FerroviaireDB?retryWrites=true&w=majority'),
 
+    UserAccountModule,
+    TransactionModule,
+    CompteFinancierModule,
+
+
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET_PAYMEQUICK,
+      signOptions: { expiresIn: '30d' },
+    }),
+    
+    MongooseModule.forRoot(process.env.MONGODB_URI),
 
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -54,6 +72,6 @@ import { FormulaireExploittationModule } from './formulaire_Exploitation/formula
 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ],
 })
 export class AppModule { }

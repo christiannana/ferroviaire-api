@@ -1,16 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
+
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+  // app.useGlobalGuards(new AuthGuard());
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 3000);
 
 }
- 
+  
 bootstrap();
-
-
  
+
+  
 
 // import { NestFactory } from '@nestjs/core';
 // import { ExpressAdapter } from '@nestjs/platform-express';

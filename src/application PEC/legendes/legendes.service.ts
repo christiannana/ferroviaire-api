@@ -28,7 +28,9 @@ export class LegendesService {
   }
 
  async update(id: string, updateLegendeDto: UpdateLegendeDto) {
-    let action = await this.legendeData.findByIdAndUpdate(id, updateLegendeDto)
+    let action = await this.legendeData.findByIdAndUpdate(id, updateLegendeDto )
+    let userData = await this.legendeData.findByIdAndUpdate(id,  updateLegendeDto )
+    let userDataX = await this.legendeData.findByIdAndUpdate(id, { name: 'jason bourne'}, {})
     return {statut: true, message: "Modification effectué avec succès"};
   }
 
